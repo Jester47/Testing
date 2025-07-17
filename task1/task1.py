@@ -1,7 +1,11 @@
 # 1
-n = int(input(f"Максимальное число в массиве: "))
-m = int(input(f"Интервал проверки массива: "))
-size = int(input(f"Размер массива: "))
+import sys
+
+n = int(sys.argv[1])
+m = int(sys.argv[2])
+size = 0
+for i in range(1, n + 1):
+    size += 1
 
 _list_ = list(range(1, n + 1))  # Повторяющийся интервал
 new_list = []  # Наш массив

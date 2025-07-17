@@ -1,8 +1,12 @@
 # 3
 import json
+import sys
 
+tests_file = sys.argv[2]
+values_file = sys.argv[1]
+report_file = sys.argv[3]
 
-def load_files(tests_file, values_file):
+def load_files():
     with open(tests_file, 'r') as file:
         tests = json.load(file)
 
@@ -11,10 +15,9 @@ def load_files(tests_file, values_file):
     return tests, values
 
 
-tests, values = load_files('tests.json', 'values.json')
+tests, values = load_files()
 
 count_values = len(values['values'])
-
 
 # Добавление по id всем по пути tests/
 def id():
@@ -35,7 +38,6 @@ def id():
             continue
 
     return count
-
 
 # Добавление по id всем по пути tests/values
 def id1():
@@ -64,7 +66,6 @@ def id1():
             continue
 
     return count
-
 
 # Добавление по id всем по пути tests/values/values
 def id2():
@@ -95,7 +96,6 @@ def id2():
             continue
 
     return count
-
 
 # Добавление по id всем по пути tests/values/values/values
 def id3():
@@ -131,12 +131,11 @@ def id3():
 
     return count
 
-
 id()
 id1()
 id2()
 id3()
 
 # Запись результатов в report.json
-with open('report.json', 'w', encoding='utf-8') as file:
+with open(report_file, 'w', encoding='utf-8') as file:
     json.dump(tests, file, ensure_ascii=False, indent=2)

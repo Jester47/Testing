@@ -1,33 +1,11 @@
 # 2
-# Ввод параметров окружности
-def parametrs():
-    centre_x = int(input('Введите координату x: '))
-    centre_y = int(input('Введите координату y: '))
-    radius = int(input('Введите радиус окружности: '))
-    centre_xy = [str(centre_x), '\t', str(centre_y), '\n', str(radius)]
-    return centre_x, centre_y, radius, centre_xy
+import sys
 
-
-# Загрузка параметров окружности в файл
-def write_parametrs():
-    with open('circle.txt', 'w') as f:
-        f.writelines(parametrs()[3])
-
-
-# Загрузка точек в файл
-def write_dot():
-    count_points = int(input("Введите количество точек: "))
-    open('dot.txt', 'w').close()
-    for i in range(1, count_points + 1):
-        with open('dot.txt', 'a') as f:
-            point_x = int(input(f'Введите x{i} точку: '))
-            point_y = int(input(f'Введите y{i} точку: '))
-            point_xy = [str(point_x) + '\t', str(point_y) + '\n']
-            f.writelines(point_xy)
-
+circle_file = sys.argv[1]
+dot_file = sys.argv[2]
 
 # Чтение файла с параметрами окружности
-def read_parametrs(circle_file):
+def read_parametrs():
     coordinates = []
     with open(circle_file, 'r') as f:
         for line in f:
@@ -37,7 +15,7 @@ def read_parametrs(circle_file):
 
 
 # Чтение файла с точками
-def read_dot(dot_file):
+def read_dot():
     points = []
     points_x = []
     points_y = []
@@ -62,8 +40,6 @@ def check_location(points_x, points_y, coord_x, coord_y, rad):
 
 
 # Результат
-write_parametrs()
-write_dot()
-points_x, points_y = read_dot('dot.txt')
-coord_x, coord_y, rad = read_parametrs('circle.txt')
+points_x, points_y = read_dot()
+coord_x, coord_y, rad = read_parametrs()
 check_location(points_x, points_y, coord_x, coord_y, rad)

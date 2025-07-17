@@ -1,20 +1,13 @@
 # 4
-# Загрузка файла
-def write():
-    count = int(input("Введите количество элементов: "))
-    open('number.txt', 'w').close()
-    for i in range(1, count + 1):
-        with open('number.txt', 'a') as f:
-            array = int(input(f'Введите {i} элемент массива: '))
-            arr = [str(array) + '\n']
-            f.writelines(arr)
+import sys
 
+number_file = sys.argv[1]
 
 # Чтение файла
-def read(file):
+def read_file():
     array = []
     arr = []
-    with open(file, 'r') as f:
+    with open(number_file, 'r') as f:
         for line in f:
             array.append([int(i) for i in line.split()])
     for i in range(len(array)):
@@ -24,7 +17,7 @@ def read(file):
 
 # Среднее значение в массиве
 def average_item():
-    my_list = read('number.txt')
+    my_list = read_file()
     mean = sum(my_list) / len(my_list)
     distance_list = [abs(mean - num) for num in my_list]
     return my_list[distance_list.index(min(distance_list))]
@@ -36,7 +29,7 @@ def step():
     step_min = 0  # Шаги от минимального числа
 
     # Читаем файл
-    my_list = read('number.txt')  #
+    my_list = read_file()  #
     print(f'Наш массив: {my_list}')
 
     average = average_item()
@@ -61,5 +54,4 @@ def step():
 
 
 # Результаты
-write()  # Запись
 step()  # Чтение и вывод
